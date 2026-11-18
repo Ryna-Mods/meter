@@ -18,13 +18,16 @@ local addonName, ns = ...
 local R = _G.Ryna
 -- The core API level this mod needs is the TOC's (## X-Ryna-API), the one place it is written;
 -- on a core below it nothing loads, and the core's Mods tab says why.
-local needs = 1
+local needs, known = 1, false
 do
   local read = (_G.C_AddOns and _G.C_AddOns.GetAddOnMetadata) or _G.GetAddOnMetadata
   local ok, level = pcall(function() return tonumber(read(addonName, "X-Ryna-API")) end)
-  if ok and level then needs = level end
+  if ok and level then needs, known = level, true end
 end
-if type(R) ~= "table" or type(R.API) ~= "number" or R.API < needs or type(R.RegisterMod) ~= "function" then
+-- Nor on a core that no longer serves this mod's level (R.API_MIN, absent on a core before it);
+-- only when the TOC's level could be read, so a client that won't say never turns the mod off.
+local tooOld = known and type(R) == "table" and type(R.API_MIN) == "number" and needs < R.API_MIN
+if type(R) ~= "table" or type(R.API) ~= "number" or R.API < needs or tooOld or type(R.RegisterMod) ~= "function" then
   ns.off = true
   return
 end
