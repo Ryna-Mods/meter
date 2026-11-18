@@ -16,8 +16,9 @@ local function eq(got, want, what)
 end
 
 local function load(core, level)
-  _G.Ryna = core and setmetatable(core, { __index = function() return function() end end }) or nil
-  _G.C_AddOns = { GetAddOnMetadata = function(_, field) if field == "X-Ryna-API" then return level end end }
+  rawset(_G, "Ryna", core and setmetatable(core, { __index = function() return function() end end }) or nil)
+  rawset(_G, "C_AddOns",
+    { GetAddOnMetadata = function(_, field) if field == "X-Ryna-API" then return level end end })
   local mod = {}
   assert(loadfile("Ryna_Meter/Mod.lua"))("Ryna_Meter", mod)
   return mod.off
