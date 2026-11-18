@@ -1,0 +1,27 @@
+## Interface: 16001
+## Title: Meter by Ryna
+## Notes: Live in a fight, from the game itself: a meter (damage, DPS, healing, HPS and more) and a threat bar while your group is fighting. A mod of Ryna; /ryna meter.
+## Author: Ryna contributors
+## Version: 0.5.0
+## Dependencies: Ryna_Core
+## X-Ryna-API: 2
+## LoadOnDemand: 0
+
+Mod.lua
+Locales\enUS.lua
+Locales\deDE.lua
+Locales\frFR.lua
+Locales\esES.lua
+Locales\esMX.lua
+Locales\itIT.lua
+Locales\ptBR.lua
+Locales\ruRU.lua
+Locales\koKR.lua
+Locales\zhCN.lua
+Locales\zhTW.lua
+Frame.lua
+Threat.lua
+ThreatBar.lua
+Bars.lua
+Tab.lua
+Init.lua
